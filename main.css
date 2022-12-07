@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap');
 
 body {
   /* font-family: 'Source Sans Pro', sans-serif;
@@ -6,10 +6,10 @@ body {
   font-weight: 400;
   line-height: normal; */
 
-  font: 16px "Source Sans Pro", sans-serif;
+  font: 16px 'Source Sans Pro', sans-serif;
 }
 
-p {
+.with-border {
   /* padding: 10px;
   padding-left: 30px; */
 
@@ -37,4 +37,23 @@ p {
   border-bottom-style: solid;
   border-left-width: 14px;
   border-left-style: dashed; */
+}
+
+.selectors {
+  border: 5px solid;
+}
+
+/*
+-- Useful child selectors --
+  *:only-child
+  *:first-child
+  *:last-child
+  *:nth-child(1)
+  *:nth-child(odd)
+  *:nth-child(even)
+  *:empty
+*/
+
+.selectors *:first-child {
+  border: 5px solid red;
 }
