@@ -43,6 +43,32 @@ body {
   border: 5px solid;
 }
 
+.flex-container {
+  display: flex;
+  gap: 20px;
+  border: 2px dashed lightpink;
+  padding: 8px;
+  margin-bottom: 20px;
+  height: 200px;
+}
+
+.row {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.column {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.flex-container div {
+  border: 2px solid powderblue;
+  padding: 8px;
+}
+
 /*
 -- Useful child selectors --
   *:only-child
