@@ -57,3 +57,31 @@ body {
 .selectors *:first-child {
   border: 5px solid red;
 }
+
+.non-static-container {
+  border: 2px dotted;
+  padding: 20px;
+  position: relative;
+}
+
+.position-container {
+  border: 2px solid;
+  width: 200px;
+  height: 200px;
+}
+
+.position-child {
+  width: 20px;
+  height: 20px;
+}
+
+.blue {
+  background: blue;
+}
+
+.red {
+  position: absolute;
+  background: red;
+  top: 10px;
+  left: 5px;
+}
