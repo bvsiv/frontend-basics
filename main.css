@@ -54,14 +54,14 @@ body {
 
 .row {
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: stretch;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .column {
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .flex-container div {
