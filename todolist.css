@@ -1,25 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap');
 
 body {
-  background-color: rgba(119, 181, 191, 255);
+  --blue: rgb(119, 181, 191);
+  --blue-transparent: rgba(119, 181, 191, 0.75);
+
+  margin: 0;
   font: 16px 'Source Sans Pro', sans-serif;
 }
 
+h1,
+h2,
+h3,
 h4 {
+  margin: 0;
   text-transform: uppercase;
+  letter-spacing: 3px;
   color: whitesmoke;
-  margin-bottom: 0px;
 }
 
-.tasks-to-be-done {
+h2 {
+  text-align: center;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 8px;
+  background-image: linear-gradient(
+    to bottom,
+    var(--blue),
+    var(--blue-transparent)
+  );
+}
+
+.tasks {
   display: flex;
   gap: 20px;
   padding: 8px;
-  margin-bottom: 20px;
   flex-direction: column;
 }
 
-.tasks-to-be-done div {
+.upcoming-tasks .tasks div {
   border: 2px solid whitesmoke;
   border-radius: 4px;
   padding: 8px;
@@ -27,7 +50,7 @@ h4 {
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
-.tasks-done div {
+.finished-tasks .tasks div {
   border-radius: 4px;
   padding: 8px;
   background-color: rgba(255, 255, 255, 0.1);
@@ -36,14 +59,17 @@ h4 {
   text-decoration: line-through;
 }
 
-.tasks-done {
-  display: flex;
-  gap: 20px;
-  padding: 8px;
-  margin-bottom: 20px;
-  flex-direction: column;
-}
-
 .add-task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 40px;
+  height: 40px;
+  padding: 2px 0 0;
+  font-size: 1.2em;
+  color: var(--blue);
   border-radius: 50%;
+  border: none;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25), 0px 0px 10px 0px white;
 }
