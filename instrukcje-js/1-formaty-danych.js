@@ -12,6 +12,10 @@ console.log('Hello World')
 true
 false
 
+// Nic
+null
+undefined
+
 // Tablice
 [123, 234, 567.12, 'text', false]
 ['Working on..', 'Doing ...']
@@ -27,7 +31,7 @@ false
 }
 
 // Deklaracja funkcja
-addNewTodoItem = (newTodoText) => {
+const addNewTodoItem = (newTodoText) => {
   document.addDiv(newTodoText)
 }
 
