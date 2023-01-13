@@ -12,30 +12,15 @@
 
 const addTaskButton = document.querySelector('.add-task')
 
-const onClick = () => {
+const onClick = event => {
   console.log('Kliknięto przycisk')
-  // 1. pokaz okno gdzie user moze dodać wpisac nazwe nowego elementy
-  // 2. dodaj element do listy
-}
 
-const onMouseEnter = () => {
-  console.log('Najechano kursorem')
+  const messageFromUser = window.prompt('Podaj nazwe elementu do listy')
+  const listElement = document.createElement('div')
+  const listElementText = document.createTextNode(messageFromUser)
+
+  listElement.appendChild(listElementText)
+  document.querySelector('.upcoming-tasks .tasks').appendChild(listElement)
 }
 
 addTaskButton.addEventListener('click', onClick)
-addTaskButton.addEventListener('mouseenter', onMouseEnter)
-
-const showMessage = (messageToBeShown, symbolToAdd) => {
-  console.log(messageToBeShown + symbolToAdd)
-}
-
-showMessage('This is a new message as an argument', '!!!')
-showMessage('Hello')
-showMessage()
-
-// window.alert(messageToBeShown + '!!!')
-
-// var par = document.createElement('p')
-// var text = document.createTextNode(messageToBeShown + '!!!')
-// par.appendChild(text)
-// document.body.appendChild(par)
