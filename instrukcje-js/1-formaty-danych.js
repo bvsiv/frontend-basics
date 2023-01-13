@@ -2,6 +2,7 @@ console.log('Hello World')
 
 // Dane liczbowe
 12341.123
+Infinity
 
 // Dane tekstowe
 'abc 123'
@@ -15,6 +16,9 @@ false
 // Nic
 null
 undefined
+
+// Not a number
+NaN
 
 // Tablice
 [123, 234, 567.12, 'text', false]

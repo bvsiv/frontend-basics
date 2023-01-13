@@ -10,8 +10,6 @@
 // snake_case
 // kebab-case
 
-console.log('Hello World')
-
 const addTaskButton = document.querySelector('.add-task')
 
 const onClick = () => {
@@ -26,3 +24,18 @@ const onMouseEnter = () => {
 
 addTaskButton.addEventListener('click', onClick)
 addTaskButton.addEventListener('mouseenter', onMouseEnter)
+
+const showMessage = (messageToBeShown, symbolToAdd) => {
+  console.log(messageToBeShown + symbolToAdd)
+}
+
+showMessage('This is a new message as an argument', '!!!')
+showMessage('Hello')
+showMessage()
+
+// window.alert(messageToBeShown + '!!!')
+
+// var par = document.createElement('p')
+// var text = document.createTextNode(messageToBeShown + '!!!')
+// par.appendChild(text)
+// document.body.appendChild(par)
