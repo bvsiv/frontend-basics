@@ -11,16 +11,15 @@
 // kebab-case
 
 const addTaskButton = document.querySelector('.add-task')
+const upcomingTasksList = document.querySelector('.upcoming-tasks .tasks')
 
-const onClick = event => {
-  console.log('Kliknięto przycisk')
-
-  const messageFromUser = window.prompt('Podaj nazwe elementu do listy')
+const addNewElementToTheList = () => {
+  const messageFromUser = window.prompt('Podaj nazwę elementu do listy')
   const listElement = document.createElement('div')
   const listElementText = document.createTextNode(messageFromUser)
 
   listElement.appendChild(listElementText)
-  document.querySelector('.upcoming-tasks .tasks').appendChild(listElement)
+  upcomingTasksList.appendChild(listElement)
 }
 
-addTaskButton.addEventListener('click', onClick)
+addTaskButton.addEventListener('click', addNewElementToTheList)
