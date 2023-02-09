@@ -12,6 +12,7 @@
 
 const addTaskButton = document.querySelector('.add-task')
 const upcomingTasksList = document.querySelector('.upcoming-tasks .tasks')
+const deleteButtons = document.querySelectorAll('.deleting-button')
 
 const addNewElementToTheList = () => {
   const messageFromUser = window.prompt('Podaj nazwę elementu do listy')
@@ -23,3 +24,9 @@ const addNewElementToTheList = () => {
 }
 
 addTaskButton.addEventListener('click', addNewElementToTheList)
+
+deleteButtons.forEach(deleteButton => {
+  deleteButton.addEventListener('click', () => {
+    deleteButton.parentElement.remove()
+  })
+})
