@@ -10,6 +10,8 @@
 // snake_case
 // kebab-case
 
+const tasksFromLocalStorage = localStorage.getItem('tasks')
+
 const addTaskButton = document.querySelector('.add-task')
 
 const upcomingTasksList = document.querySelector('.upcoming-tasks .tasks')
@@ -17,6 +19,42 @@ const upcomingTasksListItems = upcomingTasksList.querySelectorAll('div')
 
 const finishedTasksList = document.querySelector('.finished-tasks .tasks')
 const finishedTasksListItems = finishedTasksList.querySelectorAll('div')
+
+const addClickListenersToDeleteButtons = () => {
+  document.querySelectorAll('.deleting-button').forEach(deleteButton => {
+    deleteButton.addEventListener('click', () => {
+      deleteButton.parentElement.remove()
+    })
+  })
+}
+
+/*
+let tasks = []
+
+if (tasksFromLocalStorage !== null) {
+  tasks = tasksFromLocalStorage.split(',')
+}
+
+const tasks = tasksFromLocalStorage ? tasksFromLocalStorage.split(',') : []
+*/
+
+const tasks = tasksFromLocalStorage?.split(',') || []
+
+tasks.forEach(task => {
+  const listElement = document.createElement('div')
+  const listElementText = document.createTextNode(task)
+  const taskName = document.createElement('span')
+  const deleteButton = document.createElement('button')
+
+  listElement.appendChild(listElementText)
+  upcomingTasksList.appendChild(listElement)
+  listElement.appendChild(taskName)
+  listElement.appendChild(deleteButton)
+  taskName.append(listElementText)
+  deleteButton.classList.add('deleting-button')
+
+  addClickListenersToDeleteButtons()
+})
 
 const addNewElementToTheList = () => {
   const messageFromUser = window.prompt('Podaj nazwę elementu do listy')
@@ -33,14 +71,6 @@ const addNewElementToTheList = () => {
   deleteButton.classList.add('deleting-button')
 
   addClickListenersToDeleteButtons()
-}
-
-const addClickListenersToDeleteButtons = () => {
-  document.querySelectorAll('.deleting-button').forEach(deleteButton => {
-    deleteButton.addEventListener('click', () => {
-      deleteButton.parentElement.remove()
-    })
-  })
 }
 
 addClickListenersToDeleteButtons()
