@@ -11,7 +11,6 @@
 // kebab-case
 
 const addTaskButton = document.querySelector('.add-task')
-let deleteButtons = document.querySelectorAll('.deleting-button')
 
 const upcomingTasksList = document.querySelector('.upcoming-tasks .tasks')
 const upcomingTasksListItems = upcomingTasksList.querySelectorAll('div')
@@ -26,23 +25,27 @@ const addNewElementToTheList = () => {
   const taskName = document.createElement('span')
   const deleteButton = document.createElement('button')
 
-  // TODO: Opakuj tekst w span i dodaj przycisk z klasą .deleting-button
-
   listElement.appendChild(listElementText)
   upcomingTasksList.appendChild(listElement)
   listElement.appendChild(taskName)
   listElement.appendChild(deleteButton)
   taskName.append(listElementText)
   deleteButton.classList.add('deleting-button')
+
+  addClickListenersToDeleteButtons()
 }
 
-addTaskButton.addEventListener('click', addNewElementToTheList)
-
-deleteButtons.forEach(deleteButton => {
-  deleteButton.addEventListener('click', () => {
-    deleteButton.parentElement.remove()
+const addClickListenersToDeleteButtons = () => {
+  document.querySelectorAll('.deleting-button').forEach(deleteButton => {
+    deleteButton.addEventListener('click', () => {
+      deleteButton.parentElement.remove()
+    })
   })
-})
+}
+
+addClickListenersToDeleteButtons()
+
+addTaskButton.addEventListener('click', addNewElementToTheList)
 
 upcomingTasksList.addEventListener('click', event => {
   const clickedItem = event.target
