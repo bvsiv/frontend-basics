@@ -40,14 +40,17 @@ const addNewElementToTheList = taskText => {
   addClickListenersToDeleteButtons()
 }
 
-// TODO: reduce indentation
+const removeTask = event => {
+  const clickedButton = event.target
+  const taskToDelete = clickedButton.parentElement
+  removeElementFromLocalStorage(taskToDelete.innerText)
+  taskToDelete.remove()
+}
+
 const addClickListenersToDeleteButtons = () => {
-  document.querySelectorAll('.deleting-button').forEach(deleteButton => {
-    deleteButton.addEventListener('click', () => {
-      removeElementFromLocalStorage(deleteButton.parentElement.innerText)
-      deleteButton.parentElement.remove()
-    })
-  })
+  document
+    .querySelectorAll('.deleting-button')
+    .forEach(deleteButton => deleteButton.addEventListener('click', removeTask))
 }
 
 const saveElementInLocalStorage = newTask => {
