@@ -1,17 +1,4 @@
-// Weź pierwszy element który znajdziesz
-// document.querySelector('.upcoming-tasks .tasks div')
-
-// Weź wszystkie elementy
-// document.querySelectorAll('.upcoming-tasks .tasks div')
-
-// Konwencje nazywania zmiennych
-// camelCase
-// PascalCase
-// snake_case
-// kebab-case
-
 const upcomingTasksFromLocalStorage = localStorage.getItem('upcomingTasks')
-// TODO: implement this
 const finishedTasksFromLocalStorage = localStorage.getItem('finishedTasks')
 
 const addTaskButton = document.querySelector('.add-task')
@@ -22,16 +9,17 @@ const upcomingTasksListItems = upcomingTasksList.querySelectorAll('div')
 const finishedTasksList = document.querySelector('.finished-tasks .tasks')
 const finishedTasksListItems = finishedTasksList.querySelectorAll('div')
 
-const addNewElementToTheList = taskText => {
+const addNewElementToTheList = (taskText, tasksListName) => {
   if (taskText === '') return
 
   const listElement = document.createElement('div')
   const listElementText = document.createTextNode(taskText)
   const taskNameElement = document.createElement('span')
   const deleteButton = document.createElement('button')
+  const tasksList = tasksListName === 'upcomingTasks' ? upcomingTasksList : finishedTasksList
 
   listElement.appendChild(listElementText)
-  upcomingTasksList.appendChild(listElement)
+  tasksList.appendChild(listElement)
   listElement.appendChild(taskNameElement)
   listElement.appendChild(deleteButton)
   taskNameElement.append(listElementText)
@@ -40,48 +28,44 @@ const addNewElementToTheList = taskText => {
   addClickListenersToDeleteButtons()
 }
 
-const removeTask = event => {
+const removeTask = (event, storageKey) => {
   const clickedButton = event.target
   const taskToDelete = clickedButton.parentElement
-  removeElementFromLocalStorage(taskToDelete.innerText)
+  removeElementFromLocalStorage(taskToDelete.innerText, storageKey)
   taskToDelete.remove()
 }
 
 const addClickListenersToDeleteButtons = () => {
   document
-    .querySelectorAll('.deleting-button')
-    .forEach(deleteButton => deleteButton.addEventListener('click', removeTask))
+    .querySelectorAll('.upcoming-tasks .deleting-button')
+    .forEach(deleteButton => deleteButton.addEventListener('click', event => removeTask(event, 'upcomingTasks')))
+
+  document
+    .querySelectorAll('.finished-tasks .deleting-button')
+    .forEach(deleteButton => deleteButton.addEventListener('click', event => removeTask(event, 'finishedTasks')))
 }
 
-const saveElementInLocalStorage = newTask => {
+const saveElementInLocalStorage = (newTask, storageKey) => {
   if (newTask === '') return
 
-  const existingTasks = localStorage.getItem('upcomingTasks')
-  const updatedTasks = existingTasks === null ? newTask : existingTasks + ',' + newTask
+  const existingTasks = localStorage.getItem(storageKey)
+  const updatedTasks = !existingTasks ? newTask : existingTasks + ',' + newTask
 
-  localStorage.setItem('upcomingTasks', updatedTasks)
+  localStorage.setItem(storageKey, updatedTasks)
 }
 
-const removeElementFromLocalStorage = taskToRemove => {
-  const existingTasks = localStorage.getItem('upcomingTasks')?.split(',') || []
+const removeElementFromLocalStorage = (taskToRemove, storageKey) => {
+  const existingTasks = localStorage.getItem(storageKey)?.split(',') || []
   const updatedTasks = existingTasks.filter(taskText => taskText !== taskToRemove)
 
-  localStorage.setItem('upcomingTasks', updatedTasks.join())
+  localStorage.setItem(storageKey, updatedTasks.join())
 }
 
-/*
-let tasks = []
+const upcomingTasks = upcomingTasksFromLocalStorage?.split(',') || []
+const finishedTasks = finishedTasksFromLocalStorage?.split(',') || []
 
-if (upcomingTasksFromLocalStorage !== null) {
-  tasks = upcomingTasksFromLocalStorage.split(',')
-}
-
-const tasks = upcomingTasksFromLocalStorage ? upcomingTasksFromLocalStorage.split(',') : []
-*/
-
-const tasks = upcomingTasksFromLocalStorage?.split(',') || []
-
-tasks.forEach(addNewElementToTheList)
+upcomingTasks.forEach(task => addNewElementToTheList(task, 'upcomingTasks'))
+finishedTasks.forEach(task => addNewElementToTheList(task, 'finishedTasks'))
 
 addClickListenersToDeleteButtons()
 
@@ -90,8 +74,8 @@ addTaskButton.addEventListener('click', () => {
 
   if (taskText === '') return
 
-  addNewElementToTheList(taskText)
-  saveElementInLocalStorage(taskText)
+  addNewElementToTheList(taskText, 'upcomingTasks')
+  saveElementInLocalStorage(taskText, 'upcomingTasks')
 })
 
 upcomingTasksList.addEventListener('click', event => {
@@ -101,6 +85,9 @@ upcomingTasksList.addEventListener('click', event => {
   if (clickedItem.classList.contains('deleting-button')) return
 
   finishedTasksList.append(clickedItem)
+
+  saveElementInLocalStorage(clickedItem.innerText, 'finishedTasks')
+  removeElementFromLocalStorage(clickedItem.innerText, 'upcomingTasks')
 })
 
 finishedTasksList.addEventListener('click', event => {
@@ -110,4 +97,7 @@ finishedTasksList.addEventListener('click', event => {
   if (clickedItem.classList.contains('deleting-button')) return
 
   upcomingTasksList.append(clickedItem)
+
+  saveElementInLocalStorage(clickedItem.innerText, 'upcomingTasks')
+  removeElementFromLocalStorage(clickedItem.innerText, 'finishedTasks')
 })
