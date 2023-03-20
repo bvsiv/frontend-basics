@@ -9,7 +9,7 @@
   "description": "Basia's app",
   "icons": [
     {
-      "src": "/icon-512x512.png",
+      "src": "/frontend-basics/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
