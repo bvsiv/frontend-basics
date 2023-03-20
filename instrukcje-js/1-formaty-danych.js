@@ -2,6 +2,7 @@ console.log('Hello World')
 
 // Dane liczbowe
 12341.123
+Infinity
 
 // Dane tekstowe
 'abc 123'
@@ -11,6 +12,13 @@ console.log('Hello World')
 // Dane boolowskie
 true
 false
+
+// Nic
+null
+undefined
+
+// Not a number
+NaN
 
 // Tablice
 [123, 234, 567.12, 'text', false]
@@ -27,7 +35,7 @@ false
 }
 
 // Deklaracja funkcja
-addNewTodoItem = (newTodoText) => {
+const addNewTodoItem = (newTodoText) => {
   document.addDiv(newTodoText)
 }
 

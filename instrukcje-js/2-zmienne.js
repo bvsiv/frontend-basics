@@ -20,3 +20,9 @@ console.log('Punktacja:', score)
 
 // To nie zadziała
 // currentDate = '06-01-2023'
+
+// Konwencje nazywania zmiennych
+// camelCase
+// PascalCase
+// snake_case
+// kebab-case

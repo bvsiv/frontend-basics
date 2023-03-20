@@ -28,11 +28,7 @@ h2 {
   gap: 20px;
   min-height: 100vh;
   padding: 8px;
-  background-image: linear-gradient(
-    to bottom,
-    var(--blue),
-    var(--blue-transparent)
-  );
+  background-image: linear-gradient(to bottom, var(--blue), var(--blue-transparent));
 }
 
 .tasks {
@@ -43,6 +39,8 @@ h2 {
 }
 
 .upcoming-tasks .tasks div {
+  display: flex;
+  justify-content: space-between;
   border: 2px solid whitesmoke;
   border-radius: 4px;
   padding: 8px;
@@ -50,13 +48,45 @@ h2 {
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
+.upcoming-tasks .tasks div span {
+  pointer-events: none;
+}
+
 .finished-tasks .tasks div {
+  display: flex;
+  justify-content: space-between;
   border-radius: 4px;
   padding: 8px;
   background-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   color: whitesmoke;
+}
+
+.finished-tasks .tasks div span {
   text-decoration: line-through;
+  pointer-events: none;
+}
+
+.deleting-button {
+  border: none;
+  background: none;
+  padding: 0 0 2px;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.deleting-button::after {
+  content: 'x';
+}
+
+.upcoming-tasks .deleting-button:hover {
+  background-color: var(--blue-transparent);
+}
+
+.finished-tasks .deleting-button:hover {
+  background-color: whitesmoke;
 }
 
 .add-task {
@@ -72,4 +102,5 @@ h2 {
   border-radius: 50%;
   border: none;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25), 0px 0px 10px 0px white;
+  cursor: pointer;
 }
