@@ -72,7 +72,7 @@ addClickListenersToDeleteButtons()
 addTaskButton.addEventListener('click', () => {
   const taskText = window.prompt('Podaj nazwę elementu do listy')
 
-  if (taskText === '') return
+  if (!taskText) return
 
   addNewElementToTheList(taskText, 'upcomingTasks')
   saveElementInLocalStorage(taskText, 'upcomingTasks')
